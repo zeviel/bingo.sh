@@ -5,6 +5,7 @@ sign=null
 vk_user_id=null
 vk_ts=null
 vk_ref=null
+user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36"
 
 function authenticate() {
 	# 1 - sign: (string): <sign>
@@ -28,21 +29,21 @@ function authenticate() {
 function app_init() {
 	curl --request GET \
 		--url "$api/init/" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params"
 }
 
 function get_popular() {
 	curl --request GET \
 		--url "$api/getPopular/" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params"
 }
 
 function get_new() {
 	curl --request GET \
 		--url "$api/getNew/" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params"
 }
 
@@ -51,7 +52,7 @@ function like_bingo() {
 	# 2 - like: (boolean): <true, false - default: true>
 	curl --request POST \
 		--url "$api/like/$1" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params" \
 		--data '{
 			"like": '${2:-true}'
@@ -65,7 +66,7 @@ function report_bingo() {
 	# 3 - comment: (string): <comment - default: "">
 	curl --request POST \
 		--url "$api/claim/$1" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params" \
 		--data '{
 			"reason": "'$2'",
@@ -77,6 +78,6 @@ function delete_bingo() {
 	# 1 - bingo_id: (string): <bingo_id>
 	curl --request GET \
 		--url "$api/delete/$1" \
-		--user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.114 Safari/537.36" \
+		--user-agent "$user_agent" \
 		--header "xvk: $params"
 }
